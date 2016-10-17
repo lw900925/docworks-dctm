@@ -17,7 +17,7 @@ pom.xml文件中添加：
  </dependency>
  ```
 
- ### 整合Spring框架
+### 整合Spring框架
 
  在Spring的applicationContext.xml配置文件中添加如下配置项：
 
