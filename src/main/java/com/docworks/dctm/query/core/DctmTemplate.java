@@ -70,7 +70,7 @@ public class DctmTemplate implements DctmOperations {
 
                     return collExtractor.extractData(coll);
                 } catch (DfException e) {
-                    e.printStackTrace();
+                    logger.error(e.getMessage(), e);
                     return null;
                 } finally {
                     try {
