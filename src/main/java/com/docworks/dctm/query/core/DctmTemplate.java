@@ -13,6 +13,7 @@ import com.docworks.dctm.query.extractor.CollectionExtractor;
 import com.docworks.dctm.query.extractor.RowMapperCollectionExtractor;
 import com.docworks.dctm.query.extractor.SingleColumnCollectionExtractor;
 import org.apache.commons.lang3.Validate;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -22,6 +23,18 @@ import java.util.List;
  * @version 1.0
  */
 public class DctmTemplate implements DctmOperations {
+
+    private static final Logger logger = Logger.getLogger(DctmTemplate.class);
+
+    private boolean showDql = false;
+
+    /**
+     * 是否显示执行的DQL语句
+     * @param showDql true or false
+     */
+    public void setShowDql(boolean showDql) {
+        this.showDql = showDql;
+    }
 
     /** IDfClientX */
     private static final IDfClientX dfClientX = new DfClientX();
@@ -38,6 +51,11 @@ public class DctmTemplate implements DctmOperations {
         Validate.notBlank(dql, "Argument 'dql' cannot be blank.");
         Validate.notNull(dfSession, "Argument 'dfSession' cannot be null.");
         Validate.notNull(collExtractor, "Argument 'collExtractor' cannot be null.");
+
+        // 打印DQL语句
+        if (showDql) {
+            logger.info(dql);
+        }
 
         class SimpleQueryCallback implements QueryCallback<T> {
 
@@ -60,7 +78,7 @@ public class DctmTemplate implements DctmOperations {
                             coll.close();
                         }
                     } catch (DfException e) {
-                        e.printStackTrace();
+                        logger.error(e.getMessage(), e);
                     }
                 }
             }

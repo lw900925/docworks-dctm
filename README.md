@@ -22,7 +22,9 @@ pom.xml文件中添加：
  在Spring的applicationContext.xml配置文件中添加如下配置项：
 
 ```
-<bean id="dctmTemplate" class="com.docworks.dctm.query.core.DctmTemplate" />
+<bean id="dctmTemplate" class="com.docworks.dctm.query.core.DctmTemplate">
+    <property name="showDql" value="true" />
+</bean>
 ```
 
 实体类：
