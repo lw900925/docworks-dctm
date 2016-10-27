@@ -54,7 +54,7 @@ public class DctmTemplate implements DctmOperations {
 
         // 打印DQL语句
         if (showDql) {
-            logger.info(dql);
+            System.out.println(dql);
         }
 
         class SimpleQueryCallback implements QueryCallback<T> {
